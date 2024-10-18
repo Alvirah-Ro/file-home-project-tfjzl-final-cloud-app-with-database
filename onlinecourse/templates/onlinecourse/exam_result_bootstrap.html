@@ -51,7 +51,22 @@
         <div class="card-columns-vertical mt-1">
         <h5 class="">Exam results</h5>
             <!--HINT Display exam results-->
-            
+                    <div class="card mt-1">
+                        {% for question in questions %}
+                        <div class="card-header"><h5> {{ question.content }}</h5></div>
+                        {% endfor %}
+                        {% for choice in choices %}
+                        <div class="form-check">
+                            {% if choice.is_get_score == True && choice.is_correct == True %}
+                                <div class="text-success">Correct answer: {{ choice.content }}</div>
+                            {% elif choice.is_get_score == False %}
+                                <div class="text-warning">Not selected: {{ choice.content }}</div>
+                            {% elif choice.is_get_score == True && choice.is_correct == False %}
+                                <div class="text-danger">Wrong answer: {{ choice.content }}</div>
+                            {% endif %}
+                        </div>      
+                        {% endfor %}
+                    </div>
         </div>
     </div>
 </body>
